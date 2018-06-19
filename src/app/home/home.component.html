@@ -1,0 +1,65 @@
+﻿<ion-header>
+  <ion-navbar color="default" #mycontent>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <strong>Music Share</strong>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="animated fadeIn common-bg">
+
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12 col-sm>
+          <ion-card *ngFor="let album of files.results">
+            <img src="{{ album.album_logo }}"/>
+
+            <ion-card-content>
+              <ion-card-title>
+                {{ album.artist }} - {{ album.album_title }}
+              </ion-card-title>
+              <p>
+                The most popular industrial group ever, and largely responsible for bringing the music to a mass audience.
+              </p>
+            </ion-card-content>
+
+            <ion-row no-padding>
+              <ion-col>
+                <button ion-button clear small color="danger" icon-start>
+                  <ion-icon name='star'></ion-icon>
+                  Favorite
+                </button>
+              </ion-col>
+              <ion-col text-center>
+                <button ion-button clear small color="danger" icon-start>
+                  <ion-icon name='musical-notes'></ion-icon>
+                  Listen
+                </button>
+              </ion-col>
+              <ion-col text-right>
+                <button ion-button clear small color="danger" icon-start>
+                  <ion-icon name='share-alt'></ion-icon>
+                  Share
+                </button>
+              </ion-col>
+            </ion-row>
+        </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+</ion-content>
+
+<ion-menu side="left" [content]="mycontent">
+  <ion-content>
+    <ion-list>
+      <ion-item [routerLink]="['/']">Dashboard</ion-item>
+      <ion-item [routerLink]="['/file-uploads']">Files</ion-item>
+      <ion-item [routerLink]="['/file-create']">Upload</ion-item>
+      <ion-item [routerLink]="['/login']">Logout</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>

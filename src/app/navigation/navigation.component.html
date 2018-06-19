@@ -1,0 +1,30 @@
+<aside id="left-sidebar-nav">
+    <ul id="slide-out" class="side-nav fixed leftside-navigation" style="overflow: auto">
+        <li class="user-details cyan darken-2">
+            <div class="row">
+                <div class="col col s4 m4 l4"></div>
+                <div class="col col s8 m8 l8">
+                    <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" href="#">
+                        <span id="logged_in_user">{{ currentUser.user.username }}</span></a>
+                    <p class="user-roal">Welcome, {{ currentUser.user.username }}</p>
+                </div>
+            </div>
+        </li>
+        <li class="bold active"><a [routerLink]="['/']" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Dashboard</a>
+        </li>
+        <li class="no-padding">
+            <ul class="collapsible collapsible-accordion">
+                <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-action-view-carousel"></i> File Upload</a>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li><a [routerLink]="['/manage-file-upload']">Manage File Uploads</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li class="li-hover">
+            <div class="divider"></div>
+        </li>
+    </ul>
+</aside>
