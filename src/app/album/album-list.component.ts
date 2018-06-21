@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AlertService, AlbumService } from '../_services/index';
+import {User} from "../_models";
 
 @Component({
     templateUrl: 'album-list.component.html',
@@ -10,7 +11,7 @@ import { AlertService, AlbumService } from '../_services/index';
 
 export class AlbumListComponent implements OnInit {
     files: File[] = [];
-
+    currentUser: User;
     model: any = {};
     loading = false;
 
@@ -18,11 +19,11 @@ export class AlbumListComponent implements OnInit {
 
     constructor(
         private router: Router,
-        private fileService: AlbumService,
-        private alertService: AlertService) { }
+        private fileService: AlbumService) { }
 
     ngOnInit() {
-      this.loadAllFiles(0);
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      this.loadAllFiles(this.currentUser.user.id, 0);
     }
 
     download(doc: string) {
@@ -31,29 +32,12 @@ export class AlbumListComponent implements OnInit {
 
     pageOffset() {
       const inc_offset = this.f += 50;
-      this.loadAllFiles(inc_offset);
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      this.loadAllFiles(this.currentUser.user.id, inc_offset);
     }
 
-    private loadAllFiles(offset) {
-      const load_all_ = this.fileService.getAllFiles(offset);
+    private loadAllFiles(user_id: number, offset: number) {
+      const load_all_ = this.fileService.getAllAlbums(user_id, offset);
       load_all_.subscribe(files => { this.files = files; });
-    }
-
-    view_extract(id) {
-      this.extractContent(id);
-    }
-
-    private extractContent(id: number) {
-      const extract = this.fileService.extractContent(id);
-      extract.subscribe(data => {
-          if (data.success == true) {
-            this.router.navigate(['/file-extract', id]);
-          } else if (data.success == false){
-            alert(JSON.stringify(data.detail));
-          }
-        },
-        error => {
-          alert(error);
-        });
     }
 }

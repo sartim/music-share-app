@@ -1,36 +1,130 @@
 <ion-header>
-  <ion-navbar color="default" #mycontent>
+  <ion-navbar color="danger" #mycontent>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      <strong>Admin</strong>
+      <strong>Music Share</strong>
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding class="animated fadeIn common-bg">
-
     <ion-grid>
       <ion-row>
         <ion-col col-12 col-sm>
-          <ion-card no-margin margin-bottom class="full-width">
-            <p class="card-stats-title"><i class="mdi-editor-insert-drive-file"></i> Files Extract</p>
-            <p>&nbsp;</p>
-            <p style="font-style: italic; background-color: #E6E6E6">{{ files.content }}</p>
-          </ion-card>
+          <ion-card>
+            <img src="{{ albums.album_logo }}"/>
+
+            <ion-card-content>
+              <ion-card-title>
+                {{ albums.artist }} - {{ albums.album_title }}
+              </ion-card-title>
+              <p>
+                The most popular industrial group ever, and largely responsible for bringing the music to a mass audience.
+              </p>
+            </ion-card-content>
+
+            <ion-row no-padding>
+              <ion-col>
+                <button ion-button clear small color="danger" (click)="favorite(albums.id)" icon-start>
+                  <ion-icon name='star'></ion-icon>
+                  Favorite
+                </button>
+              </ion-col>
+              <ion-col text-center>
+                <button ion-button clear small color="danger" (click)="share(albums.id)" icon-start>
+                  <ion-icon name='share-alt'></ion-icon>
+                  Share
+                </button>
+              </ion-col>
+              <ion-col text-right>
+                <button ion-button clear small color="danger" (click)="deleteAlbum(albums.id)" icon-start>
+                  <ion-icon name='trash'></ion-icon>
+                  Delete
+                </button>
+              </ion-col>
+            </ion-row>
+        </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="videos.results">
+        <ion-col col-12 col-sm>
+          <ion-card>
+            <ion-card-content>
+              <ion-card-title>
+
+              </ion-card-title>
+                <ion-slides pager>
+                  <ion-slide *ngFor="let video of videos.results">
+                    <!--<ion-toolbar>
+                      <ion-buttons end>
+                        <button ion-button color="primary">Skip</button>
+                      </ion-buttons>
+                    </ion-toolbar>-->
+                    <video controls>
+                      <source src="{{ video.video_file }}" type="video/mp4">
+                    </video>
+                  </ion-slide>
+                </ion-slides>
+            </ion-card-content>
+        </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-12 col-sm>
+          <ion-card>
+            <ion-card-content>
+              <ion-card-title>
+                Playlist
+              </ion-card-title>
+                <ion-list>
+                  <ion-item *ngFor="let song of songs.results">
+                    <ion-avatar item-start>
+                      <img src="https://promoh.herokuapp.com/media/Music.jpg">
+                    </ion-avatar>
+                    <h2>{{ song.song_title }}</h2>
+                    <p>
+                      <audio controls>
+                        <source src="{{ song.audio_file }}" type="audio/mpeg">
+                      Your device does not support the audio element.
+                      </audio>
+                    </p>
+                    <button ion-button clear small color="danger" (click)="deleteSong(song.id)" icon-start>
+                    <ion-icon name='trash'></ion-icon>
+                    Delete
+                  </button>
+                    <!--<button ion-button clear item-end>
+                      <ion-icon ios="ios-play" md="md-play"></ion-icon>
+                    </button>-->
+
+                  </ion-item>
+                </ion-list>
+
+            </ion-card-content>
+        </ion-card>
         </ion-col>
       </ion-row>
     </ion-grid>
-
+    <!-- Ion Fab -->
+    <ion-fab top right edge>
+      <button ion-fab color="danger"><ion-icon name="add"></ion-icon></button>
+      <ion-fab-list>
+        <button (click)="addVideo(albums.id)" ion-fab><ion-icon ios="ios-videocam" md="md-videocam"></ion-icon></button>
+        <button (click)="addSong(albums.id)" ion-fab><ion-icon ios="ios-musical-notes" md="md-musical-notes"></ion-icon></button>
+      </ion-fab-list>
+    </ion-fab>
 </ion-content>
 
 <ion-menu side="left" [content]="mycontent">
   <ion-content>
     <ion-list>
-      <ion-item [routerLink]="['/']">Dashboard</ion-item>
-      <ion-item [routerLink]="['/file-uploads']">Files</ion-item>
-      <ion-item [routerLink]="['/file-create']">Upload</ion-item>
+      <ion-item>
+        <img src="https://ionicacademy.com/wp-content/uploads/2017/06/ionic-logo-portrait.png" style="width: 100%; height: 200px"/>
+      </ion-item>
+      <ion-item [routerLink]="['/']">Albums</ion-item>
       <ion-item [routerLink]="['/login']">Logout</ion-item>
     </ion-list>
   </ion-content>

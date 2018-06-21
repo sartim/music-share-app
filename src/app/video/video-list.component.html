@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar color="default" #mycontent>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <strong>Admin</strong>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="animated fadeIn common-bg">
+
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12 col-sm>
+          <ion-card no-margin margin-bottom class="full-width">
+            <ion-list>
+              <div ion-item *ngFor="let file of files.results">
+                  <button ion-button  (click)="download(file.doc)">Download</button>
+                  <button ion-button  (click)="view_extract(file.id)">View Extract</button>
+                {{ file.user.first_name }} - {{ file.doc }}
+
+              </div>
+
+            </ion-list>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+</ion-content>
+
+<ion-menu side="left" [content]="mycontent">
+  <ion-content>
+    <ion-list>
+      <ion-item [routerLink]="['/']">Dashboard</ion-item>
+      <ion-item [routerLink]="['/file-uploads']">Files</ion-item>
+      <ion-item [routerLink]="['/file-create']">Upload</ion-item>
+      <ion-item [routerLink]="['/login']">Logout</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+

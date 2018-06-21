@@ -13,4 +13,5 @@
       username: string,
       first_name: string,
     };
+    non_field_errors: any;
 }

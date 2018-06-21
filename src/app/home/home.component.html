@@ -1,10 +1,10 @@
 ﻿<ion-header>
-  <ion-navbar color="default" #mycontent>
+  <ion-navbar color="danger" #mycontent>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      <strong>Music Share</strong>
+      <strong>Albums</strong>
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -14,7 +14,7 @@
     <ion-grid>
       <ion-row>
         <ion-col col-12 col-sm>
-          <ion-card *ngFor="let album of files.results">
+          <ion-card id="{{ album.id }}" *ngFor="let album of albums.results">
             <img src="{{ album.album_logo }}"/>
 
             <ion-card-content>
@@ -28,19 +28,19 @@
 
             <ion-row no-padding>
               <ion-col>
-                <button ion-button clear small color="danger" icon-start>
+                <button ion-button clear small color="danger" (click)="favorite(album.id)" icon-start>
                   <ion-icon name='star'></ion-icon>
                   Favorite
                 </button>
               </ion-col>
               <ion-col text-center>
-                <button ion-button clear small color="danger" icon-start>
+                <button ion-button clear small color="danger" (click)="listen(album.id)" icon-start>
                   <ion-icon name='musical-notes'></ion-icon>
                   Listen
                 </button>
               </ion-col>
               <ion-col text-right>
-                <button ion-button clear small color="danger" icon-start>
+                <button ion-button clear small color="danger" (click)="share(album.id)" icon-start>
                   <ion-icon name='share-alt'></ion-icon>
                   Share
                 </button>
@@ -50,15 +50,19 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-
+    <!-- Ion Fab -->
+    <ion-fab top right edge>
+      <button ion-fab color="danger" (click)="addAlbum()"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
 </ion-content>
 
 <ion-menu side="left" [content]="mycontent">
   <ion-content>
     <ion-list>
-      <ion-item [routerLink]="['/']">Dashboard</ion-item>
-      <ion-item [routerLink]="['/file-uploads']">Files</ion-item>
-      <ion-item [routerLink]="['/file-create']">Upload</ion-item>
+      <ion-item>
+        <img src="https://ionicacademy.com/wp-content/uploads/2017/06/ionic-logo-portrait.png" style="width: 100%; height: 200px"/>
+      </ion-item>
+      <ion-item [routerLink]="['/']">Albums</ion-item>
       <ion-item [routerLink]="['/login']">Logout</ion-item>
     </ion-list>
   </ion-content>

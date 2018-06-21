@@ -2,6 +2,7 @@
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { AuthenticationService } from '../_services/index';
+import {ToastController} from "ionic-angular";
 
 
 @Component({
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
+        private toastCtrl: ToastController,
         private authenticationService: AuthenticationService) { }
 
     ngOnInit() {
@@ -26,6 +28,20 @@ export class LoginComponent implements OnInit {
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
+    presentToast(message: string) {
+      let toast = this.toastCtrl.create({
+        message: message,
+        duration: 3000,
+        position: 'bottom'
+      });
+
+      toast.onDidDismiss(() => {
+        console.log('Dismissed toast');
+      });
+
+      toast.present();
+    }
+
     login() {
         this.loading = true;
         this.authenticationService.login(this.model.username, this.model.password)
@@ -34,6 +50,7 @@ export class LoginComponent implements OnInit {
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {
+                    this.presentToast("Account credentials invalid!");
                     this.loading = false;
                 });
     }

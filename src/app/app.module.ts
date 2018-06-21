@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { AndroidFullScreen } from '@ionic-native/android-full-screen';
 import { Uploader } from './_directives/uploader';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
@@ -7,18 +8,21 @@ import { routing } from './app.routing';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-
-import { AlertComponent } from './_directives/index';
+import { AlertComponent } from './_directives';
 import { MyApp } from './app.component';
-import { AuthGuard } from './_guards/index';
+import { AuthGuard } from './_guards';
 import { HomePage } from '../pages/home/home';
-import { LoginComponent } from './login/index';
-import { RegisterComponent } from './register/index';
-import { HomeComponent } from './home/index';
+import { LoginComponent } from './login';
+import { RegisterComponent } from './register';
+import { HomeComponent } from './home';
+import { AlertService, AuthenticationService, UserService,
+  AlbumService, SongService, VideoService } from './_services/';
+import { AlbumListComponent, AlbumCreateComponent, AlbumDetailComponent, AlbumVideoCreateComponent,
+  AlbumSongCreateComponent} from './album';
+import { TabsComponent} from './tabs';
+import { MusicControls } from '@ionic-native/music-controls';
+import { ActionSheet} from '@ionic-native/action-sheet';
 
-import { AlertService, AuthenticationService, UserService, AlbumService } from './_services/index';
-import { AlbumListComponent, AlbumCreateComponent, AlbumDetailComponent } from './album/index';
-import { TabsComponent} from './tabs/index';
 
 @NgModule({
   declarations: [
@@ -31,6 +35,8 @@ import { TabsComponent} from './tabs/index';
     AlbumListComponent,
     AlbumCreateComponent,
     AlbumDetailComponent,
+    AlbumVideoCreateComponent,
+    AlbumSongCreateComponent,
     TabsComponent
   ],
   imports: [
@@ -53,7 +59,12 @@ import { TabsComponent} from './tabs/index';
     AuthenticationService,
     UserService,
     AlbumService,
+    SongService,
+    VideoService,
     Uploader,
+    MusicControls,
+    ActionSheet,
+    AndroidFullScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

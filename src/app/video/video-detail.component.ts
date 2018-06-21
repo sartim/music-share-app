@@ -6,9 +6,9 @@ import { Location } from '@angular/common';
 import {Song} from "../_models";
 
 @Component({
-    templateUrl: 'song-detail.component.html'
+    templateUrl: 'video-detail.component.html'
 })
-export class SongDetailComponent implements OnInit {
+export class VideoDetailComponent implements OnInit {
     songs: Song[] = [];
 
     constructor(

@@ -4,44 +4,27 @@ import { Router } from '@angular/router';
 import { AlertService, AlbumService } from '../_services';
 import { User } from '../_models';
 import { MyUploadItem }  from './my-upload-item';
-import {ToastController} from "ionic-angular";
-
 
 @Component({
-    templateUrl: 'album-create.component.html',
+    templateUrl: 'video-create.component.html',
     styles: []
 })
 
-export class AlbumCreateComponent implements OnInit {
+export class VideoCreateComponent implements OnInit {
     model: any = {};
     loading = false;
     currentUser: User;
 
-    @ViewChild('album_logo') album_logo;
+    @ViewChild('doc') doc;
 
     constructor(
         private router: Router,
         private fileService: AlbumService,
         private alertService: AlertService,
-        public uploaderService: Uploader,
-        private toastCtrl: ToastController) { }
+        public uploaderService: Uploader) { }
 
     ngOnInit() {
 
-    }
-
-    presentToast(message: string) {
-      let toast = this.toastCtrl.create({
-        message: message,
-        duration: 3000,
-        position: 'bottom'
-      });
-
-      toast.onDidDismiss(() => {
-        console.log('Dismissed toast');
-      });
-
-      toast.present();
     }
 
     delete_(id){
@@ -58,27 +41,43 @@ export class AlbumCreateComponent implements OnInit {
     }
 
     submit_() {
-      this.loading = true;
+        // let uploadFile = (<HTMLInputElement>window.document.getElementById('file')).files[0];
+        // console.log(uploadFile);
+        // console.log(txt);
 
-      let uploadFile = (<HTMLInputElement>window.document.getElementById('album_logo')).files[0];
+        // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        // if (this.currentUser) {
+        //     console.log(this.currentUser.user.username);
+        // }
+        //
+        // let fileBrowser = this.file.nativeElement;
+        // if (fileBrowser.files && fileBrowser.files[0]) {
+        //   const formData = new FormData();
+        //   formData.append("files", fileBrowser.files[0], fileBrowser.files[0].name);
+        //
+        //   console.log(formData);
+        //
+        //   this.fileService.create(this.model).subscribe(res => {
+        //   //   // do stuff w/my uploaded file
+        //   });
+        // }
 
-      let myUploadItem = new MyUploadItem(uploadFile, 'https://promoh.herokuapp.com/api/v1/album/');
+        let uploadFile = (<HTMLInputElement>window.document.getElementById('doc')).files[0];
+
+        let myUploadItem = new MyUploadItem(uploadFile);
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        myUploadItem.formData = {
-          user_id: currentUser.user.id,
-          album_logo: myUploadItem.file,
-          album_title: this.model.album_title,
-          artist: this.model.artist,
-          genre: this.model.genre
+        myUploadItem.formData = { user_id: currentUser.user.id, doc: myUploadItem.file };  // (optional) form data can be sent with file
 
-        };
+        console.log(myUploadItem);
         this.uploaderService.onSuccessUpload = (item, response, status, headers) => {
-          this.presentToast('Album added successfully');
-          this.router.navigate(['']);
+          console.log(response);
+          alert('File uploaded successfully');
+          this.router.navigate(['/file-uploads']);
+
         };
         this.uploaderService.onErrorUpload = (item, response, status, headers) => {
-             this.presentToast(response);
-             this.loading = false;
+             console.log(response);
+             alert(response);
         };
         this.uploaderService.onCompleteUpload = (item, response, status, headers) => {
              // complete callback, called regardless of success or failure

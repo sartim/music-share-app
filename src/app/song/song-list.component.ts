@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-
-import { AlertService, AlbumService } from '../_services/index';
+import {Song} from "../_models";
+import {SongService} from "../_services";
 
 @Component({
-    templateUrl: 'file-list.component.html',
+    templateUrl: 'song-list.component.html',
     styles: []
 })
 
 export class SongListComponent implements OnInit {
-    files: File[] = [];
+    songs: Song[] = [];
 
     model: any = {};
     loading = false;
@@ -17,12 +16,10 @@ export class SongListComponent implements OnInit {
     private f = 0;
 
     constructor(
-        private router: Router,
-        private fileService: AlbumService,
-        private alertService: AlertService) { }
+        private songService: SongService) { }
 
     ngOnInit() {
-      this.loadAllFiles(0);
+      this.loadAllSongs(0);
     }
 
     download(doc: string) {
@@ -31,29 +28,11 @@ export class SongListComponent implements OnInit {
 
     pageOffset() {
       const inc_offset = this.f += 50;
-      this.loadAllFiles(inc_offset);
+      this.loadAllSongs(inc_offset);
     }
 
-    private loadAllFiles(offset) {
-      const load_all_ = this.fileService.getAllFiles(offset);
-      load_all_.subscribe(files => { this.files = files; });
-    }
-
-    view_extract(id) {
-      this.extractContent(id);
-    }
-
-    private extractContent(id: number) {
-      const extract = this.fileService.extractContent(id);
-      extract.subscribe(data => {
-          if (data.success == true) {
-            this.router.navigate(['/file-extract', id]);
-          } else if (data.success == false){
-            alert(JSON.stringify(data.detail));
-          }
-        },
-        error => {
-          alert(error);
-        });
+    private loadAllSongs(offset) {
+      const load_all_ = this.songService.getAllSongs(offset);
+      load_all_.subscribe(songs => { this.songs = songs; });
     }
 }

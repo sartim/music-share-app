@@ -1,63 +1,64 @@
-﻿<div id="login-page" class="row">
-    <div class="col s12 m6 l6">
-        <div class="col s12 z-depth-4 card-panel">
-            <h4>Register</h4>
-            <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
-                <div class="row margin">
-                    <div class="input-field col s12" [ngClass]="{ 'has-error': f.submitted && !first_name.valid }">
-                        <input type="text" id="first_name" name="first_name" [(ngModel)]="model.first_name" #first_name="ngModel" required>
-                        <label for="first_name">First Name</label>
-                        <div *ngIf="f.submitted && !first_name.valid" class="help-block">First Name is required</div>
-                    </div>
-                </div>
-                <div class="row margin">
-                    <div class="input-field col s12" [ngClass]="{ 'has-error': f.submitted && !last_name.valid }">
-                        <input type="text" id="last_name" name="last_name" [(ngModel)]="model.last_name" #last_name="ngModel" required>
-                        <label for="last_name">Last Name</label>
-                        <div *ngIf="f.submitted && !last_name.valid" class="help-block">Last Name is required</div>
-                    </div>
-                </div>
-                <div class="row margin">
-                    <div class="input-field col s12" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
-                        <input type="text" id="email" name="email" [(ngModel)]="model.last_name" #email="ngModel" required>
-                        <label for="email">Email</label>
-                        <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
-                    </div>
-                </div>
-                <div class="row margin">
-                    <div class="input-field col s12" [ngClass]="{ 'has-error': f.submitted && !phone.valid }">
-                        <input type="text" id="phone" name="phone" [(ngModel)]="model.phone" #phone="ngModel" required>
-                        <label for="phone">Phone</label>
-                        <div *ngIf="f.submitted && !phone.valid" class="help-block">Phone is required</div>
-                    </div>
-                </div>
-                <div class="row margin">
-                    <div class="input-field col s12" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-                        <input id="password" type="password" name="password" [(ngModel)]="model.password" #password="ngModel" required>
-                        <label for="password">Password</label>
-                        <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
-                    </div>
-                </div>
-                <div class="row margin">
-                    <div class="input-field col s12" [ngClass]="{ 'has-error': f.submitted && !confirm_password.valid }">
-                        <input id="confirm_password" type="password" name="confirm_password" [(ngModel)]="model.password" #confirm_password="ngModel" required>
-                        <label for="confirm_password">Confirm Password</label>
-                        <div *ngIf="f.submitted && !confirm_password.valid" class="help-block">Confirm Password is required</div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <button [disabled]="loading" class="btn darken-1 waves-effect waves-orange col s12">Register</button>
-                        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
-                        />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12 m12 l12">
-                        <p class="margin medium-small">Already have an account<a [routerLink]="['/login']"> Login</a></p>
-                    </div>
-                </div>
-            </form>
-        </div>
+﻿<ion-header>
+  <ion-navbar color="danger" #mycontent>
+    <ion-title>
+      <strong style="text-align: center">SIGN UP</strong>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding class="animated fadeIn common-bg">
+  <form class="login-form" name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+    <div padding>
+        <ion-list>
+          <ion-item>
+            <ion-label fixed>First Name</ion-label>
+            <ion-input id="first_name" type="text" name="first_name" placeholder="First Name"
+                       [(ngModel)]="model.first_name" #first_name="ngModel" required></ion-input>
+            <div *ngIf="f.submitted && !first_name.valid" class="help-block">First name is required</div>
+          </ion-item>
+
+          <ion-item>
+            <ion-label fixed>Last Name</ion-label>
+            <ion-input id="last_name" type="text" name="last_name" placeholder="Last Name"
+                       [(ngModel)]="model.last_name" #last_name="ngModel" required></ion-input>
+            <div *ngIf="f.submitted && !last_name.valid" class="help-block">Last name is required</div>
+          </ion-item>
+
+          <ion-item>
+            <ion-label fixed>Email</ion-label>
+            <ion-input id="email" type="text" name="email" placeholder="Email"
+                       [(ngModel)]="model.email" #email="ngModel" required></ion-input>
+            <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
+          </ion-item>
+
+          <ion-item>
+            <ion-label fixed>Phone</ion-label>
+            <ion-input id="phone" type="text" name="phone" placeholder="Phone"
+                       [(ngModel)]="model.phone" #phone="ngModel" required></ion-input>
+            <div *ngIf="f.submitted && !phone.valid" class="help-block">Phone is required</div>
+          </ion-item>
+
+          <ion-item>
+            <ion-label fixed>Password</ion-label>
+            <ion-input id="password" type="password" name="password" placeholder="Password"
+                       [(ngModel)]="model.password" #password="ngModel" required></ion-input>
+            <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+          </ion-item>
+
+          <ion-item>
+            <ion-label fixed>Confirm Password</ion-label>
+            <ion-input id="confirm_password" type="password" name="confirm_password" placeholder="Confirm Password"
+                       [(ngModel)]="model.confirm_password" #confirm_password="ngModel" required></ion-input>
+            <div *ngIf="f.submitted && !confirm_password.valid" class="help-block">Confirm password is required</div>
+          </ion-item>
+
+        </ion-list>
     </div>
-</div>
+    <div padding>
+        <button ion-button [disabled]="loading" color="danger" block>Sign Up</button>
+        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+    </div>
+    <div class="input-field col s6 m6 l6" padding>
+      <p class="margin medium-small">Don't have an account? <a [routerLink]="['/login']">Sign In</a></p>
+    </div>
+  </form>
+</ion-content>

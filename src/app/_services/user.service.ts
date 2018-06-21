@@ -8,7 +8,8 @@ export class UserService {
     constructor(private http: Http) { }
 
     create(user: User) {
-        return this.http.post('https://calm-oasis-69563.herokuapp.com/api/v1/auth/register/', user, this.jwt()).map((response: Response) => response.json());
+        return this.http.post('https://promoh.herokuapp.com/api/v1/auth/register/', user,
+          this.jwt()).map((response: Response) => response.json());
     }
 
     // private helper methods
@@ -16,7 +17,13 @@ export class UserService {
     token() {
       // create authorization header with jwt token
       let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-      return currentUser.token;
+      if (currentUser) {
+        let token = currentUser.token;
+        return token;
+      } else {
+        let token = '';
+        return token;
+      }
     }
 
     jwt() {

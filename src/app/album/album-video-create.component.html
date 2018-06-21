@@ -4,7 +4,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      <strong>Music Share</strong>
+      <strong>Add Video</strong>
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -13,31 +13,17 @@
     <div padding>
         <ion-list>
           <ion-item>
-            <ion-label fixed>Album Title</ion-label>
-            <ion-input id="album_title" type="text" name="album_title" placeholder="Album Title"
-                       [(ngModel)]="model.album_title" #album_title="ngModel" required></ion-input>
-            <div *ngIf="f.submitted && !album_title.valid" class="help-block">Album title is required</div>
+            <ion-label fixed>Song Title</ion-label>
+            <ion-input id="song_title" type="text" name="song_title" placeholder="Song Title"
+                       [(ngModel)]="model.song_title" #song_title="ngModel" required></ion-input>
+            <div *ngIf="f.submitted && !song_title.valid" class="help-block">Song title is required</div>
           </ion-item>
 
           <ion-item>
-            <ion-label fixed>Artist</ion-label>
-            <ion-input id="artist" type="text" name="artist" placeholder="Artist"
-                       [(ngModel)]="model.artist" #artist="ngModel" required></ion-input>
-            <div *ngIf="f.submitted && !artist.valid" class="help-block">Artist is required</div>
-          </ion-item>
-
-          <ion-item>
-            <ion-label fixed>Genre</ion-label>
-            <ion-input id="genre" type="text" name="genre" placeholder="Genre"
-                       [(ngModel)]="model.genre" #genre="ngModel" required></ion-input>
-            <div *ngIf="f.submitted && !genre.valid" class="help-block">Genre is required</div>
-          </ion-item>
-
-          <ion-item>
-            <label>Album Logo: </label>
-            <input id="album_logo" type="file" name="album_logo"
-                   [(ngModel)]="model.album_logo" #album_logo="ngModel" required>
-            <div *ngIf="f.submitted && !album_logo.valid" class="help-block">Album logo is required</div>
+            <label>Video File: </label>
+            <input id="video_file" type="file" name="video_file"
+                   [(ngModel)]="model.video_file" #video_file="ngModel" required>
+            <div *ngIf="f.submitted && !video_file.valid" class="help-block">Video file is required</div>
           </ion-item>
 
 

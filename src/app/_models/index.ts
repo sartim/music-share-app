@@ -1,2 +1,4 @@
 ﻿export * from './user';
-export * from './file';
+export * from './album';
+export * from './song';
+export * from './video';

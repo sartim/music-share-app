@@ -8,16 +8,16 @@ import {ToastController} from "ionic-angular";
 
 
 @Component({
-    templateUrl: 'album-create.component.html',
+    templateUrl: 'album-song-create.component.html',
     styles: []
 })
 
-export class AlbumCreateComponent implements OnInit {
+export class AlbumSongCreateComponent implements OnInit {
     model: any = {};
     loading = false;
     currentUser: User;
 
-    @ViewChild('album_logo') album_logo;
+    @ViewChild('audio_file') audio_file;
 
     constructor(
         private router: Router,
@@ -60,21 +60,31 @@ export class AlbumCreateComponent implements OnInit {
     submit_() {
       this.loading = true;
 
-      let uploadFile = (<HTMLInputElement>window.document.getElementById('album_logo')).files[0];
+      let url = String(window.location);
+      let cast_id = parseInt(url.slice(-1));
+      let count = 1;
+      let arr = [];
+      while (!isNaN(cast_id)) {
+        console.log(parseInt(url.slice(-count)));
+        count++;
+        if (isNaN(parseInt(url.slice(-count)))) {
+          let new_count = count-1;
+          arr.push(parseInt(url.slice(-new_count)));
+          break;
+        }
+      }
 
-      let myUploadItem = new MyUploadItem(uploadFile, 'https://promoh.herokuapp.com/api/v1/album/');
-        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      let uploadFile = (<HTMLInputElement>window.document.getElementById('audio_file')).files[0];
+      let myUploadItem = new MyUploadItem(uploadFile, 'https://promoh.herokuapp.com/api/v1/song/');
         myUploadItem.formData = {
-          user_id: currentUser.user.id,
-          album_logo: myUploadItem.file,
-          album_title: this.model.album_title,
-          artist: this.model.artist,
-          genre: this.model.genre
+          album_id: arr[0],
+          audio_file: myUploadItem.file,
+          song_title: this.model.song_title
 
         };
         this.uploaderService.onSuccessUpload = (item, response, status, headers) => {
-          this.presentToast('Album added successfully');
-          this.router.navigate(['']);
+          this.router.navigate(['/album-detail/'+arr[0]]);
+          this.presentToast('Song added successfully');
         };
         this.uploaderService.onErrorUpload = (item, response, status, headers) => {
              this.presentToast(response);
