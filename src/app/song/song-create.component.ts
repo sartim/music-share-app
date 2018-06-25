@@ -3,12 +3,12 @@ import { Component, OnInit, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { Http } from '@angular/http';
 
-import { AlertService, AlbumService } from '../_services/index';
-import { User } from '../_models/index';
+import { AlertService, AlbumService } from '../_services';
+import { User } from '../_models';
 import { MyUploadItem }  from './my-upload-item';
 
 @Component({
-    templateUrl: 'file-create.component.html',
+    templateUrl: 'song-create.component.html',
     styles: []
 })
 
@@ -23,7 +23,6 @@ export class SongCreateComponent implements OnInit {
         private router: Router,
         private fileService: AlbumService,
         private alertService: AlertService,
-        private http: Http,
         public uploaderService: Uploader) { }
 
     ngOnInit() {
