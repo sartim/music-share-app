@@ -5,6 +5,7 @@ import { AlertService, AlbumService } from '../_services';
 import { User } from '../_models';
 import { MyUploadItem }  from './my-upload-item';
 import {ToastController} from "ionic-angular";
+import {MyApp} from "../app.component";
 
 
 @Component({
@@ -24,37 +25,15 @@ export class AlbumCreateComponent implements OnInit {
         private fileService: AlbumService,
         private alertService: AlertService,
         public uploaderService: Uploader,
-        private toastCtrl: ToastController) { }
+        private toastCtrl: ToastController,
+        private app: MyApp) { }
 
     ngOnInit() {
 
     }
 
     presentToast(message: string) {
-      let toast = this.toastCtrl.create({
-        message: message,
-        duration: 3000,
-        position: 'bottom'
-      });
-
-      toast.onDidDismiss(() => {
-        console.log('Dismissed toast');
-      });
-
-      toast.present();
-    }
-
-    delete_(id){
-      this.fileService.delete(id).subscribe(
-                data => {
-                    this.alertService.success('File deleted successfully', true);
-                    console.log(data);
-                    this.router.navigate(['/file-uploads']);
-                },
-                error => {
-                    this.alertService.error(error);
-                    console.log(error);
-                });
+      this.app.presentToast(message);
     }
 
     submit_() {
@@ -84,5 +63,9 @@ export class AlbumCreateComponent implements OnInit {
              // complete callback, called regardless of success or failure
         };
         this.uploaderService.upload(myUploadItem);
+    }
+
+    goBack(): void {
+        this.app.goBack();
     }
 }

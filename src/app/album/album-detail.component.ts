@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import {Album, Song, User, Video} from "../_models";
 import {Platform, ActionSheetController, ToastController} from 'ionic-angular';
+import { MyApp } from '../app.component';
 
 
 @Component({
@@ -37,7 +38,8 @@ export class AlbumDetailComponent implements OnInit {
         private location: Location,
         private toastCtrl: ToastController,
         public platform: Platform,
-        public actionsheetCtrl: ActionSheetController) { }
+        public actionsheetCtrl: ActionSheetController,
+        private app: MyApp) { }
 
     ngOnInit() {
         this.route.paramMap
@@ -212,6 +214,6 @@ export class AlbumDetailComponent implements OnInit {
     }
 
     goBack(): void {
-        this.location.back();
+        this.app.goBack();
     }
 }
