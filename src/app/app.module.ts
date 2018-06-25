@@ -15,6 +15,7 @@ import { HomePage } from '../pages/home/home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
 import { HomeComponent } from './home';
+import { NavigationComponent } from './navigation';
 import { AlertService, AuthenticationService, UserService,
   AlbumService, SongService, VideoService } from './_services/';
 import { AlbumListComponent, AlbumCreateComponent, AlbumDetailComponent, AlbumVideoCreateComponent,
@@ -29,6 +30,7 @@ import { ActionSheet} from '@ionic-native/action-sheet';
     MyApp,
     HomePage,
     AlertComponent,
+    NavigationComponent,
     HomeComponent,
     LoginComponent,
     RegisterComponent,
