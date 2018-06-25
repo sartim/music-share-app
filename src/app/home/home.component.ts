@@ -5,10 +5,19 @@ import {Album, User} from '../_models';
 import { AuthenticationService, AlbumService } from '../_services';
 import {ToastController} from "ionic-angular";
 import { Platform, ActionSheetController } from 'ionic-angular';
+import {MyApp} from "../app.component";
+
 
 @Component({
     templateUrl: 'home.component.html',
-    styles: []
+    styles: [`
+      .grid {
+        padding: 0px;
+      }
+      .card-md {
+        
+      }
+    `]
 })
 
 
@@ -22,7 +31,8 @@ export class HomeComponent implements OnInit {
         private router: Router,
         private toastCtrl: ToastController,
         public platform: Platform,
-        public actionsheetCtrl: ActionSheetController) {
+        public actionsheetCtrl: ActionSheetController,
+        private app: MyApp) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (this.currentUser) {
             console.log(JSON.stringify(this.currentUser.user.username));
@@ -40,17 +50,7 @@ export class HomeComponent implements OnInit {
     }
 
     presentToast(message: string) {
-      let toast = this.toastCtrl.create({
-        message: message,
-        duration: 3000,
-        position: 'bottom'
-      });
-
-      toast.onDidDismiss(() => {
-        console.log('Dismissed toast');
-      });
-
-      toast.present();
+      this.app.presentToast(message);
     }
 
     private loadAlbums(user_id: number, offset: number) {
@@ -160,4 +160,18 @@ export class HomeComponent implements OnInit {
     });
     actionSheet.present();
   }
+
+   doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
+  }
+
+  presentPopover(ev) {
+    //this.app.presentPopover(ev);
+  }
+
 }
