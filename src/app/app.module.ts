@@ -9,7 +9,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { AlertComponent } from './_directives';
-import { MyApp } from './app.component';
+import {MyApp} from './app.component';
 import { AuthGuard } from './_guards';
 import { HomePage } from '../pages/home/home';
 import { LoginComponent } from './login';
@@ -23,6 +23,7 @@ import { AlbumListComponent, AlbumCreateComponent, AlbumDetailComponent, AlbumVi
 import { TabsComponent} from './tabs';
 import { MusicControls } from '@ionic-native/music-controls';
 import { ActionSheet} from '@ionic-native/action-sheet';
+import {Popover} from "./popover";
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { ActionSheet} from '@ionic-native/action-sheet';
     AlbumDetailComponent,
     AlbumVideoCreateComponent,
     AlbumSongCreateComponent,
+    Popover,
     TabsComponent
   ],
   imports: [
@@ -51,7 +53,8 @@ import { ActionSheet} from '@ionic-native/action-sheet';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    Popover
   ],
   providers: [
     StatusBar,
