@@ -171,7 +171,7 @@ export class HomeComponent implements OnInit {
   }
 
   presentPopover(ev) {
-    //this.app.presentPopover(ev);
+    this.app.presentPopover(ev);
   }
 
 }
