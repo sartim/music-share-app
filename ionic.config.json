@@ -2,5 +2,8 @@
   "name": "music_share",
   "app_id": "",
   "integrations": {},
-  "type": "ionic-angular"
+  "type": "ionic-angular",
+  "v2": true,
+  "typescript": true
 }
+
