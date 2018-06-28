@@ -1,9 +1,8 @@
 {
   "name": "music_share",
   "app_id": "",
-  "integrations": {},
-  "type": "ionic-angular",
-  "v2": true,
-  "typescript": true
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
 }
-
