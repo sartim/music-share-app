@@ -39,11 +39,12 @@ export class MyApp implements OnInit {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       // let status bar overlay webview
-      statusBar.overlaysWebView(true);
+      //statusBar.overlaysWebView(true);
 
       // set status bar to white
-      statusBar.backgroundColorByHexString('#ffffff');
-      //statusBar.hide();
+      //statusBar.backgroundColorByHexString('#ffffff');
+
+      statusBar.hide();
       splashScreen.hide();
     });
   }
