@@ -1,7 +1,6 @@
 ﻿import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-
-import { AlertService } from '../_services/index';
+import { AlertService } from '../_services';
 
 @Component({
     selector: 'alert',

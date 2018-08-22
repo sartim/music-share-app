@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import {Album, Song, User, Video} from "../_models";
 import {Platform, ActionSheetController, ToastController} from 'ionic-angular';
 import { MyApp } from '../app.component';
+import {Storage} from "@ionic/storage";
 
 
 @Component({
@@ -39,7 +40,8 @@ export class AlbumDetailComponent implements OnInit {
         private toastCtrl: ToastController,
         public platform: Platform,
         public actionsheetCtrl: ActionSheetController,
-        private app: MyApp) { }
+        private app: MyApp,
+        private storage: Storage) { }
 
     ngOnInit() {
         this.route.paramMap
@@ -65,6 +67,19 @@ export class AlbumDetailComponent implements OnInit {
 
         this.loadAlbumSongs(arr[0], this.currentUser.user.id, 0); // To get total songs
         this.loadAlbumVideos(arr[0], this.currentUser.user.id, 0); // To get total videos
+
+        // set a key/value
+        this.storage.set('age', '12');
+
+        this.storage.remove('name').then((val) => {
+          alert('Removed');
+        });
+
+        // Or to get a key/value pair
+        this.storage.get('age').then((val) => {
+          alert('Your age is '+ val);
+        });
+
     }
 
     presentToast(message: string) {

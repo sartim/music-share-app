@@ -24,6 +24,7 @@ import { TabsComponent} from './tabs';
 import { MusicControls } from '@ionic-native/music-controls';
 import { ActionSheet} from '@ionic-native/action-sheet';
 import {Popover} from "./popover";
+import {IonicStorageModule} from "@ionic/storage";
 
 
 @NgModule({
@@ -48,7 +49,11 @@ import {Popover} from "./popover";
     FormsModule,
     routing,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot({
+      name: '__mydb',
+      driverOrder: ['indexeddb', 'sqlite', 'websql']
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -1,9 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {Album, User} from '../_models';
-
 import { AuthenticationService, AlbumService } from '../_services';
-import {ToastController} from "ionic-angular";
 import { Platform, ActionSheetController } from 'ionic-angular';
 import {MyApp} from "../app.component";
 
@@ -29,7 +27,6 @@ export class HomeComponent implements OnInit {
         private authenticationService: AuthenticationService,
         private albumService: AlbumService,
         private router: Router,
-        private toastCtrl: ToastController,
         public platform: Platform,
         public actionsheetCtrl: ActionSheetController,
         private app: MyApp) {
