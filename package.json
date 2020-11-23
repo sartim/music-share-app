@@ -24,7 +24,7 @@
     "@ionic-native/action-sheet": "^4.7.0",
     "@ionic-native/android-full-screen": "^4.7.0",
     "@ionic-native/core": "4.3.2",
-    "@ionic-native/file-transfer": "^4.7.0",
+    "@ionic-native/file-transfer": "^5.30.0",
     "@ionic-native/music-controls": "^4.7.0",
     "@ionic-native/splash-screen": "4.3.2",
     "@ionic-native/status-bar": "4.3.2",
